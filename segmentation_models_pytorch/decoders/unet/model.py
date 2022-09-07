@@ -2,7 +2,7 @@ from typing import Optional, Union, List
 
 from segmentation_models_pytorch.encoders import get_encoder
 from segmentation_models_pytorch.base import (
-    SegmentationModel,
+    SegmentationModel,MySegmentationModel
     SegmentationHead,
     ClassificationHead,
 )
