@@ -86,7 +86,7 @@ class MySegmentationModel(torch.nn.Module):
         #features1 = self.encoder(b)
         print(features0.shape)
         print(features1.shape)
-		features = self.encoder(a)
+		features = self.encoder(x)
         #features=torch.cat((features0, features1), 1)
         decoder_output = self.decoder(*features)
 
