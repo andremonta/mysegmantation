@@ -1,4 +1,4 @@
-from .model import SegmentationModel
+from .model import SegmentationModel, MySegmentationModel
 
 from .modules import (
     Conv2dReLU,
