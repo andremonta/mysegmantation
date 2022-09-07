@@ -65,7 +65,7 @@ class MySegmentationModel(torch.nn.Module):
 		if self.classification_head is not None:
 			init.initialize_head(self.classification_head)
 
-    def check_input_shape(self, x):
+ def check_input_shape(self, x):
 
 		h, w = x.shape[-2:]
 		output_stride = self.encoder.output_stride
