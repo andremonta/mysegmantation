@@ -59,28 +59,36 @@ class SegmentationModel(torch.nn.Module):
 		
 		
 class MySegmentationModel(torch.nn.Module):
-    def initialize(self):
+	def initialize(self):
 		init.initialize_decoder(self.decoder)
-        init.initialize_head(self.segmentation_head)
-        if self.classification_head is not None:
-            init.initialize_head(self.classification_head)
+		init.initialize_head(self.segmentation_head)
+		if self.classification_head is not None:
+			init.initialize_head(self.classification_head)
 
     def check_input_shape(self, x):
 
-        h, w = x.shape[-2:]
-        output_stride = self.encoder.output_stride
-        if h % output_stride != 0 or w % output_stride != 0:
-            new_h = (h // output_stride + 1) * output_stride if h % output_stride != 0 else h
-            new_w = (w // output_stride + 1) * output_stride if w % output_stride != 0 else w
-            raise RuntimeError(
-                f"Wrong input shape height={h}, width={w}. Expected image height and width "
-                f"divisible by {output_stride}. Consider pad your images to shape ({new_h}, {new_w})."
+		h, w = x.shape[-2:]
+		output_stride = self.encoder.output_stride
+		if h % output_stride != 0 or w % output_stride != 0:
+			new_h = (h // output_stride + 1) * output_stride if h % output_stride != 0 else h
+			new_w = (w // output_stride + 1) * output_stride if w % output_stride != 0 else w
+			raise RuntimeError(
+				f"Wrong input shape height={h}, width={w}. Expected image height and width "
+				f"divisible by {output_stride}. Consider pad your images to shape ({new_h}, {new_w})."
             )
-
+			
+			
     def forward(self, x):
         """Questo è il metodo da modificare!!! (devo filtrare x) min:23"""
 
 		self.check_input_shape(x)
+		print(x.shape)
+		a,b=np.split(x,2,axis=2)
+		features0 = self.encoder(a)
+		features1 = self.encoder(b)
+		print(features0.shape)
+		print(features1.shape)
+		features=np.concatenate((features0, features1), axis=2)
         decoder_output = self.decoder(*features)
 
         masks = self.segmentation_head(decoder_output)
@@ -108,4 +116,3 @@ class MySegmentationModel(torch.nn.Module):
         x = self.forward(x)
 
         return x
-
