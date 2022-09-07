@@ -81,7 +81,7 @@ class MySegmentationModel(torch.nn.Module):
 
         self.check_input_shape(x)
         x.shape
-        a,b=np.split(x,2,axis=2)
+        c,d=np.split(x,2,axis=2)
         features0 = self.encoder(a)
         features1 = self.encoder(b)
         print(features0.shape)
