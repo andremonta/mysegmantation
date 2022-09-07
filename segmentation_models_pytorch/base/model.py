@@ -82,7 +82,7 @@ class MySegmentationModel(torch.nn.Module):
         """Questo è il metodo da modificare!!! (devo filtrare x) min:23"""
 
 		self.check_input_shape(x)
-		print(x.shape)
+		x.shape
 		a,b=np.split(x,2,axis=2)
 		features0 = self.encoder(a)
 		features1 = self.encoder(b)
