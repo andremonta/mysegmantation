@@ -59,13 +59,13 @@ class SegmentationModel(torch.nn.Module):
 
 
 class MySegmentationModel(torch.nn.Module):
-	def initialize(self):
+    def initialize(self):
 		init.initialize_decoder(self.decoder)
 		init.initialize_head(self.segmentation_head)
 		if self.classification_head is not None:
 			init.initialize_head(self.classification_head)
 
- def check_input_shape(self, x):
+    def check_input_shape(self, x):
 
 		h, w = x.shape[-2:]
 		output_stride = self.encoder.output_stride
