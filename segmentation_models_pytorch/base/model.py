@@ -81,13 +81,13 @@ class MySegmentationModel(torch.nn.Module):
 
         self.check_input_shape(x)
         #x.shape
-        a,b=torch.tensor_split(x, 2, dim=1)
-        features0 = self.encoder(a)
-        features1 = self.encoder(b)
+        #a,b=torch.tensor_split(x, 2, dim=1)
+        #features0 = self.encoder(a)
+        #features1 = self.encoder(b)
         #print(features0.shape)
         #print(features1.shape)
-        #features = self.encoder(x)
-        features=torch.cat((features0, features1), 1)
+        features = self.encoder(x)
+        #features=torch.cat((features0, features1), 1)
         decoder_output = self.decoder(*features)
 
         masks = self.segmentation_head(decoder_output)

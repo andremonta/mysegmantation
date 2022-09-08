@@ -25,7 +25,7 @@ def create_model(
     arch: str,
     encoder_name: str = "resnet34",
     encoder_weights: _Optional[str] = "imagenet",
-    in_channels: int = 6,
+    in_channels: int = 3,
     classes: int = 2,
     **kwargs,
 ) -> _torch.nn.Module:

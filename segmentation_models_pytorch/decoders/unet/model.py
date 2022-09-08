@@ -151,7 +151,7 @@ class MyUnet(MySegmentationModel):
         decoder_use_batchnorm: bool = True,
         decoder_channels: List[int] = (256, 128, 64, 32, 16),
         decoder_attention_type: Optional[str] = None,
-        in_channels: int = 6,
+        in_channels: int = 3,
         classes: int = 2,
         activation: Optional[Union[str, callable]] = None,
         aux_params: Optional[dict] = None,
