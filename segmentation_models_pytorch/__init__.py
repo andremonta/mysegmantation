@@ -25,8 +25,8 @@ def create_model(
     arch: str,
     encoder_name: str = "resnet34",
     encoder_weights: _Optional[str] = "imagenet",
-    in_channels: int = 3,
-    classes: int = 1,
+    in_channels: int = 6,
+    classes: int = 2,
     **kwargs,
 ) -> _torch.nn.Module:
     """Models entrypoint, allows to create any model architecture just with
